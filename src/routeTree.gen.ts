@@ -9,8 +9,14 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexIndexRouteImport } from './routes/_index/index'
 
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexIndexRoute = IndexIndexRouteImport.update({
   id: '/_index/',
   path: '/',
@@ -18,29 +24,40 @@ const IndexIndexRoute = IndexIndexRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
+  '/about': typeof AboutRoute
   '/': typeof IndexIndexRoute
 }
 export interface FileRoutesByTo {
+  '/about': typeof AboutRoute
   '/': typeof IndexIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/about': typeof AboutRoute
   '/_index/': typeof IndexIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/about' | '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/_index/'
+  to: '/about' | '/'
+  id: '__root__' | '/about' | '/_index/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  AboutRoute: typeof AboutRoute
   IndexIndexRoute: typeof IndexIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_index/': {
       id: '/_index/'
       path: '/'
@@ -52,6 +69,7 @@ declare module '@tanstack/react-router' {
 }
 
 const rootRouteChildren: RootRouteChildren = {
+  AboutRoute: AboutRoute,
   IndexIndexRoute: IndexIndexRoute,
 }
 export const routeTree = rootRouteImport
