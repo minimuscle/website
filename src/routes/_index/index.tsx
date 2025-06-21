@@ -11,7 +11,7 @@ function RouteComponent() {
       <div className="flex w-full justify-between items-center pt-10 max-w-[1250px] z-2">
         <div className="flex flex-col gap-10">
           <div>
-            <h2 className="pl-2 text-xl">Hi 👋 I'm Josh,</h2>
+            <h2 className="text-xl">Hi 👋 I'm Josh</h2>
             <h1 className="text-8xl font-bold">
               Frontend
               <br />
@@ -23,18 +23,18 @@ function RouteComponent() {
             <br />I create beatiful and user-friendly websites and applications for others to enjoy.
           </p>
           <div className="flex gap-5">
-            <div className="bg-gradient-to-tr from-pink-500 to-amber-500 h-[50] w-[150] justify-center items-center flex rounded-xl">
+            <div className="bg-gradient-to-tr from-pink-500 to-amber-500 justify-center items-center flex rounded-xl">
               <Link
                 to="/about"
-                className=" m-px px-8 py-4 items-center flex justify-center text-lg font-bold text-white rounded-xl"
+                className=" m-px px-8 py-4 items-center flex justify-center text-lg font-medium text-white rounded-xl"
               >
                 Learn More
               </Link>
             </div>
-            <div className="bg-gradient-to-tr from-pink-500 to-amber-500 h-[50] w-[150] justify-center items-center flex rounded-xl">
+            <div className="bg-gradient-to-tr from-pink-500 to-amber-500 justify-center items-center flex rounded-xl">
               <Link
-                to="/contact"
-                className="bg-gray-900 h-[48] w-[148] m-px px-8 py-4 items-center flex justify-center text-lg text-white font-medium rounded-xl"
+                to="/"
+                className="bg-gray-900  m-px px-8 py-4 items-center flex justify-center text-lg text-white rounded-xl"
               >
                 Contact Me
               </Link>
@@ -44,7 +44,7 @@ function RouteComponent() {
         <img
           src={profile}
           alt="profile"
-          className="w-125 h-125 border-5 object-cover object-top border-gray-800 rounded-full"
+          className="max-w-125 h-125 aspect-square flex-1 border-5 object-cover object-top border-gray-800 rounded-full"
         />
       </div>
     </div>
