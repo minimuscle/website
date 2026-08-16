@@ -16,4 +16,13 @@ jobs:
           pwd
           ls -ld "$HOME" || true
           touch "$HOME/test-write" || true
+      - name: Debug SSH directory
+        run: |
+          echo "HOME=$HOME"
+          ls -la "$HOME"
+          ls -ld "$HOME/.ssh" || true
+          file "$HOME/.ssh" || true
 
+          mkdir -pv "$HOME/.ssh"
+
+          ls -ld "$HOME/.ssh"
