@@ -28,33 +28,31 @@
         }
     }
 
-
-
     &__cloud {
+        position: absolute;
+        top: -500px;
+        right: -50px;
+
         width: 700px;
         height: 150px;
+
         background: #000;
         border-radius: 50%;
-        position: absolute;
-        right: -50px;
-        top: -500px;
     }
 
-
-
     #cloud-back {
-        filter: url(#filter-back);
-        box-shadow: 0px 1300px 50px 0px rgba(106, 6, 255, 0.751);
+        filter: url("#filter-back");
+        box-shadow: 0 1300px 50px 0 rgba(164, 6, 255, 0.751);
     }
 
     #cloud-mid {
-        filter: url(#filter-mid);
-        box-shadow: 0px 1310px 40px -30px rgba(107, 0, 143, 0.477);
+        filter: url("#filter-mid");
+        box-shadow: 0 1310px 40px -30px rgba(107, 0, 143, 0.477);
     }
 
     #cloud-front {
-        filter: url(#filter-front);
-        box-shadow: 0px 1340px 50px -40px rgba(14, 0, 38, 0.261);
+        filter: url("#filter-front");
+        box-shadow: 0 1340px 50px -40px rgba(14, 0, 38, 0.261);
     }
 
 

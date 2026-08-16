@@ -75,7 +75,7 @@ const CloudFilter = ({ id, seeds, scale }: { id: string; seeds: readonly number[
 
 export const TitleClouds = () => {
     const cloudSeeds = [4, 61, 368, 9, 217, 433, 211, 183, 476, 124];
-    const cloud2Seeds = [121, 412, 37, 367, 449, 230, 7, 64, 153, 144];
+
 
     return (
         <>
@@ -83,20 +83,13 @@ export const TitleClouds = () => {
             <div className="TitlePage__cloud" id="cloud-mid" />
             <div className="TitlePage__cloud" id="cloud-front" />
 
-            <div className="TitlePage__cloud2" id="cloud2-back" />
-            <div className="TitlePage__cloud2" id="cloud2-mid" />
-            <div className="TitlePage__cloud2" id="cloud2-front" />
 
             <svg width="0" height="0">
                 <CloudFilter id="filter-back" seeds={cloudSeeds} scale={170} />
                 <CloudFilter id="filter-mid" seeds={cloudSeeds} scale={150} />
                 <CloudFilter id="filter-front" seeds={cloudSeeds} scale={100} />
             </svg>
-            <svg width="0" height="0">
-                <CloudFilter id="filter2-back" seeds={cloud2Seeds} scale={170} />
-                <CloudFilter id="filter2-mid" seeds={cloud2Seeds} scale={150} />
-                <CloudFilter id="filter2-front" seeds={cloud2Seeds} scale={100} />
-            </svg>
+
         </>
     );
 };

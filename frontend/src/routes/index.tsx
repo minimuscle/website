@@ -1,4 +1,5 @@
-import { TitlePage } from '#/routes/-components/title'
+import { FeaturedProject } from '#/routes/-components/modules/featured'
+import { TitlePage } from '#/routes/-components/modules/title'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({
@@ -8,5 +9,6 @@ export const Route = createFileRoute('/')({
 function RouteComponent() {
   return <>
     <TitlePage />
+    <FeaturedProject />
   </>
 }

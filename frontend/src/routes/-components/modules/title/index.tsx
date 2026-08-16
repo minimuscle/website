@@ -1,6 +1,7 @@
-import { TitleClouds } from "#/routes/-components/title/cloud";
+import { TitleClouds } from "#/routes/-components/modules/title/cloud";
 import { EnvelopeIcon, GithubLogoIcon, LinkedinLogoIcon } from "@phosphor-icons/react";
-import ProfilePic from "../../../assets/Profile Picture Square No Backgroudn.png";
+import { Link } from "@tanstack/react-router";
+import ProfilePic from "../../../../assets/Profile Picture Square No Backgroudn.png";
 import "./_title.scss";
 
 /**********************************************************************************************************
@@ -27,15 +28,15 @@ export const TitlePage = () => {
                     </button>
                 </div>
                 <div className="TitlePage__links">
-                    <a href="https://github.com/minimuscle" target="_blank" rel="noreferer">
+                    <a href="https://github.com/minimuscle" target="_blank">
                         <GithubLogoIcon weight="fill" size={48} color="rgb(165, 171, 202)" />
                     </a>
-                    <button>
+                    <a href="https://www.linkedin.com/in/josh-thiele/" target="_blank">
                         <LinkedinLogoIcon weight="fill" size={48} color="rgb(165, 171, 202)" />
-                    </button>
-                    <button>
+                    </a>
+                    <Link to="/">
                         <EnvelopeIcon weight="fill" size={48} color="rgb(165, 171, 202)" />
-                    </button>
+                    </Link>
                 </div>
             </div>
             <div className="TitlePage__profile">

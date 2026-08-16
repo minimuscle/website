@@ -9,7 +9,6 @@
         border-radius: 50%;
         transform: translate(-50%, -50%);
         animation: nebula-blob-drift ease-in-out infinite alternate;
-        will-change: transform;
     }
 }
 

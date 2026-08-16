@@ -1,11 +1,12 @@
 import { Background } from '#/routes/-components/background'
 import { TanStackDevtools } from '@tanstack/react-devtools'
-import { Outlet, createRootRoute } from '@tanstack/react-router'
+import { Outlet, createRootRouteWithContext } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import '../styles.css'
 
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext()({
   component: RootComponent,
+
 })
 
 function RootComponent() {
