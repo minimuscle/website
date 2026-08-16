@@ -1,3 +1,4 @@
+import { TitlePage } from '#/routes/-components/title'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({
@@ -5,5 +6,7 @@ export const Route = createFileRoute('/')({
 })
 
 function RouteComponent() {
-  return <div>Dumblydorr.online coming soon (2 weeks)</div>
+  return <>
+    <TitlePage />
+  </>
 }

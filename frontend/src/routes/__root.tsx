@@ -1,8 +1,9 @@
 import { Outlet, createRootRoute } from '@tanstack/react-router'
 
-import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
+import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 
+import { Background } from '#/routes/-components/background'
 import '../styles.css'
 
 export const Route = createRootRoute({
@@ -12,7 +13,11 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <>
-      <Outlet />
+      <Background />
+      <div className='content'>
+
+        <Outlet />
+      </div>
       <TanStackDevtools
         config={{
           position: 'bottom-right',

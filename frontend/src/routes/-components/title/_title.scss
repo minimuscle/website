@@ -1,0 +1,72 @@
+.TitlePage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100dvh;
+    position: relative;
+    overflow: hidden;
+
+    h1 {
+        font-size: 100px;
+    }
+
+    p {
+        font-size: 24px;
+    }
+
+    &__cloud {
+        width: 550px;
+        height: 200px;
+        background: #000;
+        border-radius: 50%;
+        position: absolute;
+        // right: -600px;
+        top: 400px;
+        transform: rotate(-45deg)
+    }
+
+
+
+    #cloud-back {
+        filter: url(#filter-back);
+        box-shadow: -500px 200px 50px 0px rgba(74, 10, 165, 0.657);
+    }
+
+    #cloud-mid {
+        filter: url(#filter-mid);
+        box-shadow: -490px 210px 40px -50px rgba(114, 0, 143, 0.477);
+    }
+
+    #cloud-front {
+        filter: url(#filter-front);
+        box-shadow: -500px 240px 30px -70px rgba(1, 0, 38, 0.631);
+    }
+
+    &__cloud2 {
+        width: 500px;
+        height: 200px;
+        background: #000;
+        border-radius: 50%;
+        position: absolute;
+        // right: -600px;
+        left: 450px;
+        top: 500px;
+        transform: rotate(-5deg)
+    }
+
+    #cloud2-back {
+        filter: url(#filter2-back);
+        box-shadow: -300px 500px 50px 0px rgba(74, 10, 165, 0.657);
+    }
+
+    #cloud2-mid {
+        filter: url(#filter2-mid);
+        box-shadow: -200px 510px 40px -50px rgba(114, 0, 143, 0.477);
+    }
+
+    #cloud2-front {
+        filter: url(#filter2-front);
+        box-shadow: -200px 520px 30px -70px rgba(1, 0, 38, 0.631);
+    }
+}
