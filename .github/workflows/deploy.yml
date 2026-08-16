@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Configure SSH
         run: |
-          mkdir -p "$HOME/.ssh"
+          mkdir -pv "$HOME/.ssh"
 
           echo "${{ secrets.DEPLOY_SSH_KEY }}" > $HOME/.ssh/deploy_key
           chmod 600 $HOME/.ssh/deploy_key
