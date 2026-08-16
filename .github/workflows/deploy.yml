@@ -12,6 +12,8 @@ jobs:
       - name: Configure SSH
         env:
           DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
         run: |
           set -x
           mkdir -p "$HOME/.ssh"
@@ -19,10 +21,9 @@ jobs:
           printf '%s\n' "$DEPLOY_SSH_KEY" > "$HOME/.ssh/deploy_key"
           chmod 600 "$HOME/.ssh/deploy_key"
 
-          ssh-keyscan \
-            -p "${{ secrets.DEPLOY_PORT }}" \
-            "${{ secrets.DEPLOY_HOST }}" \
-            >> "$HOME/.ssh/known_hosts"
+          ssh-keyscan -v \
+          -p "$DEPLOY_PORT" \
+          "$DEPLOY_HOST"
 
       - name: Deploy
         run: |
