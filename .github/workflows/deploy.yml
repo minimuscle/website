@@ -7,62 +7,22 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
-      - name: Test SSH connectivity
-        run: |
-          echo "Resolving host..."
-          getent hosts "${{ secrets.DEPLOY_HOST }}" || true
-
-          echo "Testing SSH port..."
-          nc -vz \
-            "${{ secrets.DEPLOY_HOST }}" \
-            "${{ secrets.DEPLOY_PORT }}"
-
-          echo "Scanning SSH key..."
-          ssh-keyscan -v \
-            -T 10 \
-            -p "${{ secrets.DEPLOY_PORT }}" \
-            "${{ secrets.DEPLOY_HOST }}"
-      - name: Configure SSH
-        env:
-          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
-          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
-          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
-        run: |
-          set -x
-          mkdir -p "$HOME/.ssh"
-
-          printf '%s\n' "$DEPLOY_SSH_KEY" > "$HOME/.ssh/deploy_key"
-          chmod 600 "$HOME/.ssh/deploy_key"
-
-          ssh-keyscan -v \
-          -p "$DEPLOY_PORT" \
-          "$DEPLOY_HOST"
-
       - name: Deploy
         run: |
-          ssh \
-            -i $HOME/.ssh/deploy_key \
-            -p "${{ secrets.DEPLOY_PORT }}" \
-            "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}" << 'EOF'
-
           set -e
 
           export BUN_INSTALL="$HOME/.bun"
           export PATH="$BUN_INSTALL/bin:$PATH"
 
-
-          echo "Updating repository..."
-
           cd /var/www
 
+          echo "Updating repository..."
           git fetch origin
           git reset --hard origin/main
 
-
-          echo "Deploying Laravel API..."
-
+          echo "Deploying API..."
           cd /var/www/api
 
           composer install \
@@ -74,15 +34,10 @@ jobs:
           php artisan migrate --force
           php artisan optimize
 
-
-          echo "Building React frontend..."
-
+          echo "Building frontend..."
           cd /var/www/frontend
 
           bun install --frozen-lockfile
           bun run build
 
-
           echo "Deployment complete."
-
-          EOF
