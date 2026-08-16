@@ -1,0 +1,19 @@
+name: Production Deployment TEST
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Debug runner environment
+        run: |
+          echo "whoami: $(whoami)"
+          echo "HOME: $HOME"
+          pwd
+          ls -ld "$HOME" || true
+          touch "$HOME/test-write" || true
+
