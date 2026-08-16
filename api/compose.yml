@@ -5,7 +5,7 @@ services:
     environment:
       POSTGRES_DB: dumblydorr
       POSTGRES_USER: dumblydorr
-      POSTGRES_PASSWORD: localpassword
+      POSTGRES_PASSWORD: localpassword # This will only be used for local testing and not production users or passwords
     ports:
       - "5432:5432"
     volumes:
