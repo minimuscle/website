@@ -4,7 +4,7 @@
     overflow: hidden;
     pointer-events: none;
 
-    &__blob {
+    h &__blob {
         position: absolute;
         border-radius: 50%;
         transform: translate(-50%, -50%);

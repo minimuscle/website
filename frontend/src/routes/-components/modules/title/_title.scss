@@ -2,8 +2,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 100dvh;
     position: relative;
+    margin-bottom: 200px;
 
     h1 {
         font-size: 100px;
@@ -11,6 +11,7 @@
 
     &__text {
         max-width: 640px;
+        margin-left: 50px;
 
         &Subheading {
 
@@ -42,17 +43,17 @@
 
     #cloud-back {
         filter: url("#filter-back");
-        box-shadow: 0 1300px 50px 0 rgba(164, 6, 255, 0.751);
+        box-shadow: 0 900px 50px 0 rgba(164, 6, 255, 0.751);
     }
 
     #cloud-mid {
         filter: url("#filter-mid");
-        box-shadow: 0 1310px 40px -30px rgba(107, 0, 143, 0.477);
+        box-shadow: 0 910px 40px -30px rgba(107, 0, 143, 0.477);
     }
 
     #cloud-front {
         filter: url("#filter-front");
-        box-shadow: 0 1340px 50px -40px rgba(14, 0, 38, 0.261);
+        box-shadow: 0 940px 50px -40px rgba(14, 0, 38, 0.261);
     }
 
 
@@ -62,8 +63,6 @@
             margin-right: 50px;
             width: 500px;
             height: 500px;
-            // border-radius: 100%;
-            // background: linear-gradient(to bottom, #fff, #00000000);
 
             mask-image: linear-gradient(to bottom,
                     black 0%,

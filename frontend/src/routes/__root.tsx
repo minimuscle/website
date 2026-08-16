@@ -1,4 +1,5 @@
 import { Background } from '#/routes/-components/background'
+import { Navbar } from '#/routes/-components/modules/navbar'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import { Outlet, createRootRouteWithContext } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
@@ -14,7 +15,7 @@ function RootComponent() {
     <>
       <Background />
       <div className='content'>
-
+        <Navbar />
         <Outlet />
       </div>
       <TanStackDevtools

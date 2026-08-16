@@ -1,7 +1,7 @@
 import { TitleClouds } from "#/routes/-components/modules/title/cloud";
 import { EnvelopeIcon, GithubLogoIcon, LinkedinLogoIcon } from "@phosphor-icons/react";
 import { Link } from "@tanstack/react-router";
-import ProfilePic from "../../../../assets/Profile Picture Square No Backgroudn.png";
+import ProfilePic from "../../../../assets/Profile Picture Square No Background.png";
 import "./_title.scss";
 
 /**********************************************************************************************************
