@@ -9,6 +9,21 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Test SSH connectivity
+        run: |
+          echo "Resolving host..."
+          getent hosts "${{ secrets.DEPLOY_HOST }}" || true
+
+          echo "Testing SSH port..."
+          nc -vz \
+            "${{ secrets.DEPLOY_HOST }}" \
+            "${{ secrets.DEPLOY_PORT }}"
+
+          echo "Scanning SSH key..."
+          ssh-keyscan -v \
+            -T 10 \
+            -p "${{ secrets.DEPLOY_PORT }}" \
+            "${{ secrets.DEPLOY_HOST }}"
       - name: Configure SSH
         env:
           DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
