@@ -10,16 +10,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Configure SSH
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
         run: |
-          mkdir -pv "$HOME/.ssh"
+          mkdir -p "$HOME/.ssh"
 
-          echo "${{ secrets.DEPLOY_SSH_KEY }}" > $HOME/.ssh/deploy_key
-          chmod 600 $HOME/.ssh/deploy_key
+          printf '%s\n' "$DEPLOY_SSH_KEY" > "$HOME/.ssh/deploy_key"
+          chmod 600 "$HOME/.ssh/deploy_key"
 
           ssh-keyscan \
             -p "${{ secrets.DEPLOY_PORT }}" \
             "${{ secrets.DEPLOY_HOST }}" \
-            >> $HOME/.ssh/known_hosts
+            >> "$HOME/.ssh/known_hosts"
 
       - name: Deploy
         run: |
