@@ -11,8 +11,8 @@ export const Background = () => {
             xPosition: Math.round(Math.random() * 100) + 0,
             yPosition: Math.round(Math.random() * 100) + 0,
             size: Math.round(Math.random() * 40) + 10,
-            color: Math.random() < 0.5 ? 'rgba(150, 0, 235, 0.1)' : 'rgba(0, 0, 100, 0.1)',
-            animationDuration: Math.round(Math.random() * 20) + 10,
+            color: Math.random() < 0.5 ? 'rgba(150, 0, 235, 0.05)' : 'rgba(0, 0, 100, 0.05)',
+            animationDuration: Math.round(Math.random()) + 5,
             animationDelay: Math.round(Math.random() * -20),
 
             moveXStart: Math.round(Math.random() * 120) - 60,

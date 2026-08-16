@@ -1,8 +1,82 @@
-/**********************************************************************************************************
- *   COMPONENT START
- **********************************************************************************************************/
+const SeedMorph = ({ seeds }: { seeds: readonly number[] }) => {
+    const samplesPerSeed = 8;
+    const weights = seeds.map((_, seedIndex) => {
+        const samples = Array.from({ length: seeds.length * samplesPerSeed }, (_, sample) => {
+            const segment = Math.floor(sample / samplesPerSeed);
+            const t = (sample % samplesPerSeed) / samplesPerSeed;
+            const controlWeights = [
+                ((1 - t) ** 3) / 6,
+                (3 * t ** 3 - 6 * t ** 2 + 4) / 6,
+                (-3 * t ** 3 + 3 * t ** 2 + 3 * t + 1) / 6,
+                t ** 3 / 6
+            ];
+
+            return controlWeights.reduce((weight, controlWeight, controlIndex) => {
+                const controlSeed = (segment + controlIndex - 1 + seeds.length) % seeds.length;
+                return controlSeed === seedIndex ? weight + controlWeight : weight;
+            }, 0);
+        });
+
+        return [...samples, samples[0]].map(weight => weight.toFixed(4)).join(";");
+    });
+
+    return (
+        <>
+            {seeds.map((seed, index) => (
+                <feTurbulence
+                    key={seed}
+                    result={`noise-${index}`}
+                    type="fractalNoise"
+                    baseFrequency=".012"
+                    numOctaves="4"
+                    seed={seed}
+                />
+            ))}
+            {weights.map((values, index) => (
+                <feComponentTransfer key={values} in={`noise-${index}`} result={`weighted-noise-${index}`}>
+                    <feFuncR type="linear">
+                        <animate attributeName="slope" values={values} dur="15s" repeatCount="indefinite" />
+                    </feFuncR>
+                    <feFuncG type="linear">
+                        <animate attributeName="slope" values={values} dur="15s" repeatCount="indefinite" />
+                    </feFuncG>
+                    <feFuncB type="linear">
+                        <animate attributeName="slope" values={values} dur="15s" repeatCount="indefinite" />
+                    </feFuncB>
+                    <feFuncA type="linear">
+                        <animate attributeName="slope" values={values} dur="15s" repeatCount="indefinite" />
+                    </feFuncA>
+                </feComponentTransfer>
+            ))}
+            {seeds.slice(1).map((_, offset) => {
+                const index = offset + 1;
+                return (
+                    <feComposite
+                        key={index}
+                        in={index === 1 ? "weighted-noise-0" : `summed-noise-${index - 1}`}
+                        in2={`weighted-noise-${index}`}
+                        operator="arithmetic"
+                        k2="1"
+                        k3="1"
+                        result={index === seeds.length - 1 ? "morphed-noise" : `summed-noise-${index}`}
+                    />
+                );
+            })}
+        </>
+    );
+};
+
+const CloudFilter = ({ id, seeds, scale }: { id: string; seeds: readonly number[]; scale: number }) => (
+    <filter id={id}>
+        <SeedMorph seeds={seeds} />
+        <feDisplacementMap in="SourceGraphic" in2="morphed-noise" scale={scale} />
+    </filter>
+);
+
 export const TitleClouds = () => {
-    /***** RENDER *****/
+    const cloudSeeds = [4, 61, 368, 9, 217, 433, 211, 183, 476, 124];
+    const cloud2Seeds = [121, 412, 37, 367, 449, 230, 7, 64, 153, 144];
+
     return (
         <>
             <div className="TitlePage__cloud" id="cloud-back" />
@@ -13,36 +87,15 @@ export const TitleClouds = () => {
             <div className="TitlePage__cloud2" id="cloud2-mid" />
             <div className="TitlePage__cloud2" id="cloud2-front" />
 
-
-
-
             <svg width="0" height="0">
-                <filter id="filter-back">
-                    <feTurbulence type="fractalNoise" baseFrequency=".012" numOctaves="4" seed="4" />
-                    <feDisplacementMap in="SourceGraphic" scale="170" />
-                </filter>
-                <filter id="filter-mid">
-                    <feTurbulence type="fractalNoise" baseFrequency=".012" numOctaves="4" seed="4" />
-                    <feDisplacementMap in="SourceGraphic" scale="150" />
-                </filter>
-                <filter id="filter-front">
-                    <feTurbulence type="fractalNoise" baseFrequency=".012" numOctaves="4" seed="4" />
-                    <feDisplacementMap in="SourceGraphic" scale="100" />
-                </filter>
+                <CloudFilter id="filter-back" seeds={cloudSeeds} scale={170} />
+                <CloudFilter id="filter-mid" seeds={cloudSeeds} scale={150} />
+                <CloudFilter id="filter-front" seeds={cloudSeeds} scale={100} />
             </svg>
             <svg width="0" height="0">
-                <filter id="filter2-back">
-                    <feTurbulence type="fractalNoise" baseFrequency=".012" numOctaves="4" seed="121" />
-                    <feDisplacementMap in="SourceGraphic" scale="170" />
-                </filter>
-                <filter id="filter2-mid">
-                    <feTurbulence type="fractalNoise" baseFrequency=".012" numOctaves="4" seed="121" />
-                    <feDisplacementMap in="SourceGraphic" scale="150" />
-                </filter>
-                <filter id="filter2-front">
-                    <feTurbulence type="fractalNoise" baseFrequency=".012" numOctaves="4" seed="121" />
-                    <feDisplacementMap in="SourceGraphic" scale="100" />
-                </filter>
+                <CloudFilter id="filter2-back" seeds={cloud2Seeds} scale={170} />
+                <CloudFilter id="filter2-mid" seeds={cloud2Seeds} scale={150} />
+                <CloudFilter id="filter2-front" seeds={cloud2Seeds} scale={100} />
             </svg>
         </>
     );

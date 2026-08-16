@@ -1,72 +1,120 @@
 .TitlePage {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     height: 100dvh;
     position: relative;
-    overflow: hidden;
 
     h1 {
         font-size: 100px;
     }
 
-    p {
-        font-size: 24px;
+    &__text {
+        max-width: 640px;
+
+        &Subheading {
+
+            font-size: 32px;
+            line-height: 1.5;
+
+        }
+
+        &Main {
+            margin-top: 30px;
+            margin-bottom: 50px;
+            font-size: 22px;
+            line-height: 1.5;
+
+        }
     }
 
+
+
     &__cloud {
-        width: 550px;
-        height: 200px;
+        width: 700px;
+        height: 150px;
         background: #000;
         border-radius: 50%;
         position: absolute;
-        // right: -600px;
-        top: 400px;
-        transform: rotate(-45deg)
+        right: -50px;
+        top: -500px;
     }
 
 
 
     #cloud-back {
         filter: url(#filter-back);
-        box-shadow: -500px 200px 50px 0px rgba(74, 10, 165, 0.657);
+        box-shadow: 0px 1300px 50px 0px rgba(106, 6, 255, 0.751);
     }
 
     #cloud-mid {
         filter: url(#filter-mid);
-        box-shadow: -490px 210px 40px -50px rgba(114, 0, 143, 0.477);
+        box-shadow: 0px 1310px 40px -30px rgba(107, 0, 143, 0.477);
     }
 
     #cloud-front {
         filter: url(#filter-front);
-        box-shadow: -500px 240px 30px -70px rgba(1, 0, 38, 0.631);
+        box-shadow: 0px 1340px 50px -40px rgba(14, 0, 38, 0.261);
     }
 
-    &__cloud2 {
-        width: 500px;
-        height: 200px;
-        background: #000;
-        border-radius: 50%;
-        position: absolute;
-        // right: -600px;
-        left: 450px;
-        top: 500px;
-        transform: rotate(-5deg)
+
+    &__profile {
+        img {
+            margin-top: -50px;
+            margin-right: 50px;
+            width: 500px;
+            height: 500px;
+            // border-radius: 100%;
+            // background: linear-gradient(to bottom, #fff, #00000000);
+
+            mask-image: linear-gradient(to bottom,
+                    black 0%,
+                    black 70%,
+                    transparent 100%);
+
+            -webkit-mask-image: linear-gradient(to bottom,
+                    black 0%,
+                    black 70%,
+                    transparent 100%);
+        }
     }
 
-    #cloud2-back {
-        filter: url(#filter2-back);
-        box-shadow: -300px 500px 50px 0px rgba(74, 10, 165, 0.657);
+    &__buttons {
+        display: flex;
+        gap: 20px;
+        margin: 30px 0;
+
+        &Main {
+            height: 50px;
+            border-radius: 10px;
+            background: linear-gradient(to top, #c01a00, #fe8811);
+            padding: 0 30px;
+            font-size: 18px;
+            font-weight: 500;
+            box-shadow: 0 0 10px 5px #860000;
+
+            &:hover {
+                background: linear-gradient(to top, #a11500, #db740d);
+            }
+        }
+
+        &Secondary {
+            height: 50px;
+            border-radius: 10px;
+            border: 2px solid #a11500;
+            background-color: rgba(1, 0, 38, 1);
+            padding: 0 30px;
+            font-size: 18px;
+            font-weight: 500;
+
+            &:hover {
+                background-color: rgb(59, 5, 5);
+            }
+        }
     }
 
-    #cloud2-mid {
-        filter: url(#filter2-mid);
-        box-shadow: -200px 510px 40px -50px rgba(114, 0, 143, 0.477);
-    }
-
-    #cloud2-front {
-        filter: url(#filter2-front);
-        box-shadow: -200px 520px 30px -70px rgba(1, 0, 38, 0.631);
+    &__links {
+        display: flex;
+        gap: 30px;
     }
 }
